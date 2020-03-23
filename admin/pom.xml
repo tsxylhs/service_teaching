@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>TeachService</artifactId>
+        <groupId>com.teach.edu.server</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>admin</artifactId>
+
+     <dependencies>
+
+         <!-- Add Log4j2 Dependency -->
+     <!--    <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-log4j2</artifactId>
+
+         </dependency>-->
+         <dependency>
+             <groupId>com.teach.edu.server</groupId>
+             <artifactId>common</artifactId>
+             <version>1.0-SNAPSHOT</version>
+         </dependency>
+         <dependency>
+             <groupId>com.teach.edu.server</groupId>
+             <artifactId>core</artifactId>
+             <version>1.0-SNAPSHOT</version>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-devtools</artifactId>
+             <optional>true</optional>
+             <scope>true</scope>
+         </dependency>
+         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+         <dependency>
+             <groupId>com.alibaba</groupId>
+             <artifactId>fastjson</artifactId>
+             <version>1.2.40</version>
+         </dependency>
+
+       <!--  <dependency>
+             <groupId> org.apache.cassandra</groupId>
+             <artifactId>cassandra-all</artifactId>
+             <version>0.8.1</version>
+
+             <exclusions>
+                 <exclusion>
+                     <groupId>org.slf4j</groupId>
+                     <artifactId>slf4j-log4j12</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>log4j</groupId>
+                     <artifactId>log4j</artifactId>
+                 </exclusion>
+             </exclusions>
+
+         </dependency>-->
+
+     </dependencies>
+
+</project>
