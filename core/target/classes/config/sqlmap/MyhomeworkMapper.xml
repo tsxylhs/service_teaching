@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teach.edu.core.mapper.MyhomeworkMapper">
+  <resultMap id="BaseResultMap" type="com.teach.edu.core.entity.Myhomework">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
+    <result column="homework_id" jdbcType="BIGINT" property="homeworkId" />
+    <result column="homework_url" jdbcType="BIGINT" property="homeworkUrl" />
+    <result column="homework_desc" jdbcType="VARCHAR" property="homeworkDesc" />
+    <result column="homework_status" jdbcType="VARCHAR" property="homeworkStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, updated_at, created_at, deleted_at, homework_id, homework_url, homework_desc, 
+    homework_status
+  </sql>
+  <select id="selectByExample" parameterType="com.teach.edu.core.entity.MyhomeworkExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from myhomework
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from myhomework
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from myhomework
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.teach.edu.core.entity.MyhomeworkExample">
+    delete from myhomework
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.teach.edu.core.entity.Myhomework">
+    insert into myhomework (id, updated_at, created_at, 
+      deleted_at, homework_id, homework_url, 
+      homework_desc, homework_status)
+    values (#{id,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{homeworkId,jdbcType=BIGINT}, #{homeworkUrl,jdbcType=BIGINT}, 
+      #{homeworkDesc,jdbcType=VARCHAR}, #{homeworkStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Myhomework">
+    insert into myhomework
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="deletedAt != null">
+        deleted_at,
+      </if>
+      <if test="homeworkId != null">
+        homework_id,
+      </if>
+      <if test="homeworkUrl != null">
+        homework_url,
+      </if>
+      <if test="homeworkDesc != null">
+        homework_desc,
+      </if>
+      <if test="homeworkStatus != null">
+        homework_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="homeworkId != null">
+        #{homeworkId,jdbcType=BIGINT},
+      </if>
+      <if test="homeworkUrl != null">
+        #{homeworkUrl,jdbcType=BIGINT},
+      </if>
+      <if test="homeworkDesc != null">
+        #{homeworkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="homeworkStatus != null">
+        #{homeworkStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.teach.edu.core.entity.MyhomeworkExample" resultType="java.lang.Long">
+    select count(*) from myhomework
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update myhomework
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null">
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.homeworkId != null">
+        homework_id = #{record.homeworkId,jdbcType=BIGINT},
+      </if>
+      <if test="record.homeworkUrl != null">
+        homework_url = #{record.homeworkUrl,jdbcType=BIGINT},
+      </if>
+      <if test="record.homeworkDesc != null">
+        homework_desc = #{record.homeworkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeworkStatus != null">
+        homework_status = #{record.homeworkStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update myhomework
+    set id = #{record.id,jdbcType=BIGINT},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      homework_id = #{record.homeworkId,jdbcType=BIGINT},
+      homework_url = #{record.homeworkUrl,jdbcType=BIGINT},
+      homework_desc = #{record.homeworkDesc,jdbcType=VARCHAR},
+      homework_status = #{record.homeworkStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.teach.edu.core.entity.Myhomework">
+    update myhomework
+    <set>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null">
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="homeworkId != null">
+        homework_id = #{homeworkId,jdbcType=BIGINT},
+      </if>
+      <if test="homeworkUrl != null">
+        homework_url = #{homeworkUrl,jdbcType=BIGINT},
+      </if>
+      <if test="homeworkDesc != null">
+        homework_desc = #{homeworkDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="homeworkStatus != null">
+        homework_status = #{homeworkStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.teach.edu.core.entity.Myhomework">
+    update myhomework
+    set updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      homework_id = #{homeworkId,jdbcType=BIGINT},
+      homework_url = #{homeworkUrl,jdbcType=BIGINT},
+      homework_desc = #{homeworkDesc,jdbcType=VARCHAR},
+      homework_status = #{homeworkStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
