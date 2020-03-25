@@ -1,5 +1,6 @@
 package com.teach.edu.core.service;
 
+import com.teach.edu.core.entity.Signin;
 import com.teach.edu.core.entity.User;
 import com.edu.common.code.model.Result;
 import com.edu.common.code.page.PageRequest;
@@ -16,5 +17,6 @@ public interface UserService {
      Result list(PageRequest pageRequest);
      User get(Long id);
      int update(User user);
+     int add(User user);
 }
 

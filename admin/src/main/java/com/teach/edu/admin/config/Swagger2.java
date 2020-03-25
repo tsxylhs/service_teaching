@@ -31,7 +31,7 @@ public class Swagger2 {
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder().title("让我们红尘作伴，活得潇潇洒洒").
                 description("策马奔腾，共享人世繁华").
-                termsOfServiceUrl("tsxylhs.store")
+                termsOfServiceUrl("txylhs.stores")
                 .contact("lhs")
                 .version("1.0.0").build();
     }

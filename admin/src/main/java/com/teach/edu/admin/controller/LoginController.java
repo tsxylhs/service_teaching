@@ -1,5 +1,6 @@
 package com.teach.edu.admin.controller;
 
+import com.teach.edu.admin.model.Info;
 import com.teach.edu.core.entity.User;
 import com.edu.common.code.model.Result;
 import io.swagger.annotations.Api;
@@ -27,6 +28,20 @@ public class LoginController {
         return Result.ok();
     }
 
+    @GetMapping("/info")
+    @ApiOperation(value = "获取用户信息")
+    @ApiImplicitParam(paramType = "getUserInfo")
+    public Result getInfo() {
+
+        com.teach.edu.admin.model.Info info = new Info();
+        info.name = "admin";
+        info.avatar = "w";
+         String [] str={"admin"};
+        info.roles=str;
+        return Result.ok(info);
+
+    }
+
     @PutMapping("/")
     @ApiOperation(value = "用户登录信息")
     @ApiImplicitParam(paramType = "login", name = "User", required = true, dataType = "user")
@@ -39,7 +54,6 @@ public class LoginController {
     @ApiOperation(value = "微信用户登录")
     @ApiImplicitParam(paramType = "weblodgin")
     public Result weblogin(@RequestBody User User) {
-
         return Result.ok();
     }
 

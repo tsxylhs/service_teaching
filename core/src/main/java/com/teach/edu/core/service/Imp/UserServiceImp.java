@@ -1,5 +1,6 @@
 package com.teach.edu.core.service.Imp;
 
+import com.teach.edu.core.entity.Signin;
 import com.teach.edu.core.entity.User;
 import com.teach.edu.core.entity.UserExample;
 import com.teach.edu.core.mapper.UserMapper;
@@ -12,8 +13,10 @@ import com.github.pagehelper.PageInfo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.springframework.util.IdGenerator;
 
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +29,7 @@ import java.util.List;
 public class UserServiceImp  implements UserService {
     @Autowired
     UserMapper userMapper;
+
     @Override
     public User get(Long id) {
         return userMapper.selectByPrimaryKey(id);
@@ -45,5 +49,9 @@ public class UserServiceImp  implements UserService {
         return Result.ok(
                 new PageData(new PageInfo<>(users).getTotal(), pageRequest.getPage(), pageRequest.getPageSize()),
                 users);
+    }
+    @Override
+    public int add(User user) {
+        return userMapper.insert(user);
     }
 }

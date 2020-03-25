@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
+
     @GetMapping("/{id}")
     @ApiOperation(value = "根据用户ｉｄ查询用户信息")
     @ApiImplicitParam(paramType = "query" ,name = "id" ,value="用户id",required = true,dataType = "long")
@@ -40,7 +41,12 @@ public class UserController {
     public Result userList(@RequestBody PageRequest pageRequest) {
       return userService.list(pageRequest);
     }
-     public void test(){
-     }
+    @PostMapping("/add")
+    @ApiOperation(value="添加用户")
+    public Result add(@RequestBody User user){
+        userService.add(user);
+        return Result.ok();
+    }
+
 
 }
