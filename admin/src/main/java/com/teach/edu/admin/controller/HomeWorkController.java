@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.IdGenerator;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 /**
  * @ClassName HomeWorkController
  * @Author lvhoushuai(tsxylhs @ outlook.com)
@@ -26,8 +28,6 @@ import org.springframework.web.bind.annotation.*;
 public class HomeWorkController {
     @Autowired
     HomeworkService homeworkService;
-
-    IdGenerator idGenerator;
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据Id获取信息")
@@ -52,8 +52,17 @@ public class HomeWorkController {
     @PostMapping("/add")
     @ApiOperation(value = "添加新作业")
     public Result add(@RequestBody Homework homework) {
-        homework.setId(idGenerator.generateId().node());
+
+        homework.setId(new Random().nextLong());
         homeworkService.add(homework);
         return Result.ok();
     }
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除作业")
+    @ApiImplicitParam(paramType = "query", name = "id", value = "用户id", required = true, dataType = "long")
+    public Result Delete(@PathVariable Long id) {
+        return Result.ok(homeworkService.delete(id));
+    }
+
+
 }

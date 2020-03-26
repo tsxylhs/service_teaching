@@ -29,6 +29,10 @@ public class WxUser {
 
     private String calssName;
 
+    private String code;
+
+    private String contry;
+
     public Long getId() {
         return id;
     }
@@ -131,5 +135,42 @@ public class WxUser {
 
     public void setCalssName(String calssName) {
         this.calssName = calssName;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getContry() {
+        return contry;
+    }
+
+    public void setContry(String contry) {
+        this.contry = contry;
+    }
+
+    @Override
+    public String toString() {
+        return "WxUser{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", openId='" + openId + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", updatedAt=" + updatedAt +
+                ", createdAt=" + createdAt +
+                ", deletedAt=" + deletedAt +
+                ", calssName='" + calssName + '\'' +
+                ", code='" + code + '\'' +
+                ", contry='" + contry + '\'' +
+                '}';
     }
 }

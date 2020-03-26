@@ -4,6 +4,7 @@ package com.teach.edu.core.service.Imp;
 import com.edu.common.code.model.Result;
 import com.teach.edu.core.entity.Myhomework;
 import com.teach.edu.core.entity.MyhomeworkExample;
+import com.teach.edu.core.entityVo.MyhomeworkVo;
 import com.teach.edu.core.mapper.MyhomeworkMapper;
 import com.teach.edu.core.mapper.NotesMapper;
 import com.teach.edu.core.service.MyhomeworkService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.IdGenerator;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +33,17 @@ public class MyhomeworkServiceImp implements MyhomeworkService {
     public Result list() {
         MyhomeworkExample ex=new MyhomeworkExample();
         MyhomeworkExample.Criteria c= ex.createCriteria();
+
         ex.setOrderByClause("created_at desc");
         List<Myhomework> myhomeworklists=myhomeworkMapper.selectByExample(ex);
+        List<MyhomeworkVo>myhomeworkVolist =new ArrayList<>();
+        for(int i=0;i<myhomeworklists.size();i++){
+
+            MyhomeworkVo myhomeworkVo=new MyhomeworkVo();
+            myhomeworkVo.myhomeworks=myhomeworklists.get(i);
+            //查询user
+            //查询作业
+        }
         return Result.ok(myhomeworklists);
     }
 

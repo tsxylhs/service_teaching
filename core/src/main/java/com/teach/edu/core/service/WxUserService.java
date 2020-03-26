@@ -20,4 +20,5 @@ public interface WxUserService {
 
     //删除
     int delete(long id);
+  Result  CheckLogin(WxUser wxUser);
 }
