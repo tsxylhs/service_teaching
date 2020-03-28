@@ -12,6 +12,9 @@
     <result column="teach_name" jdbcType="VARCHAR" property="teachName" />
     <result column="grades" jdbcType="INTEGER" property="grades" />
     <result column="test_scores" jdbcType="INTEGER" property="testScores" />
+    <result column="show_grades" jdbcType="INTEGER" property="showGrades" />
+    <result column="signin" jdbcType="INTEGER" property="signin" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, updated_at, created_at, deleted_at, student_id, course_name, course_grade, teach_name, 
-    grades, test_scores
+    grades, test_scores, show_grades, signin, class_name
   </sql>
   <select id="selectByExample" parameterType="com.teach.edu.core.entity.GradeExample" resultMap="BaseResultMap">
     select
@@ -109,11 +112,13 @@
     insert into grade (id, updated_at, created_at, 
       deleted_at, student_id, course_name, 
       course_grade, teach_name, grades, 
-      test_scores)
+      test_scores, show_grades, signin, 
+      class_name)
     values (#{id,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{deletedAt,jdbcType=TIMESTAMP}, #{studentId,jdbcType=BIGINT}, #{courseName,jdbcType=VARCHAR}, 
       #{courseGrade,jdbcType=INTEGER}, #{teachName,jdbcType=VARCHAR}, #{grades,jdbcType=INTEGER}, 
-      #{testScores,jdbcType=INTEGER})
+      #{testScores,jdbcType=INTEGER}, #{showGrades,jdbcType=INTEGER}, #{signin,jdbcType=INTEGER}, 
+      #{className,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Grade">
     insert into grade
@@ -148,6 +153,15 @@
       <if test="testScores != null">
         test_scores,
       </if>
+      <if test="showGrades != null">
+        show_grades,
+      </if>
+      <if test="signin != null">
+        signin,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -179,6 +193,15 @@
       </if>
       <if test="testScores != null">
         #{testScores,jdbcType=INTEGER},
+      </if>
+      <if test="showGrades != null">
+        #{showGrades,jdbcType=INTEGER},
+      </if>
+      <if test="signin != null">
+        #{signin,jdbcType=INTEGER},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +244,15 @@
       <if test="record.testScores != null">
         test_scores = #{record.testScores,jdbcType=INTEGER},
       </if>
+      <if test="record.showGrades != null">
+        show_grades = #{record.showGrades,jdbcType=INTEGER},
+      </if>
+      <if test="record.signin != null">
+        signin = #{record.signin,jdbcType=INTEGER},
+      </if>
+      <if test="record.className != null">
+        class_name = #{record.className,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +269,10 @@
       course_grade = #{record.courseGrade,jdbcType=INTEGER},
       teach_name = #{record.teachName,jdbcType=VARCHAR},
       grades = #{record.grades,jdbcType=INTEGER},
-      test_scores = #{record.testScores,jdbcType=INTEGER}
+      test_scores = #{record.testScores,jdbcType=INTEGER},
+      show_grades = #{record.showGrades,jdbcType=INTEGER},
+      signin = #{record.signin,jdbcType=INTEGER},
+      class_name = #{record.className,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +307,15 @@
       <if test="testScores != null">
         test_scores = #{testScores,jdbcType=INTEGER},
       </if>
+      <if test="showGrades != null">
+        show_grades = #{showGrades,jdbcType=INTEGER},
+      </if>
+      <if test="signin != null">
+        signin = #{signin,jdbcType=INTEGER},
+      </if>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -285,7 +329,10 @@
       course_grade = #{courseGrade,jdbcType=INTEGER},
       teach_name = #{teachName,jdbcType=VARCHAR},
       grades = #{grades,jdbcType=INTEGER},
-      test_scores = #{testScores,jdbcType=INTEGER}
+      test_scores = #{testScores,jdbcType=INTEGER},
+      show_grades = #{showGrades,jdbcType=INTEGER},
+      signin = #{signin,jdbcType=INTEGER},
+      class_name = #{className,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

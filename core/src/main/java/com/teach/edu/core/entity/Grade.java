@@ -23,6 +23,12 @@ public class Grade {
 
     private Integer testScores;
 
+    private Integer showGrades;
+
+    private Integer signin;
+
+    private String className;
+
     public Long getId() {
         return id;
     }
@@ -101,5 +107,29 @@ public class Grade {
 
     public void setTestScores(Integer testScores) {
         this.testScores = testScores;
+    }
+
+    public Integer getShowGrades() {
+        return showGrades;
+    }
+
+    public void setShowGrades(Integer showGrades) {
+        this.showGrades = showGrades;
+    }
+
+    public Integer getSignin() {
+        return signin;
+    }
+
+    public void setSignin(Integer signin) {
+        this.signin = signin;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

@@ -724,6 +724,196 @@ public class GradeExample {
             addCriterion("test_scores not between", value1, value2, "testScores");
             return (Criteria) this;
         }
+
+        public Criteria andShowGradesIsNull() {
+            addCriterion("show_grades is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesIsNotNull() {
+            addCriterion("show_grades is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesEqualTo(Integer value) {
+            addCriterion("show_grades =", value, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesNotEqualTo(Integer value) {
+            addCriterion("show_grades <>", value, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesGreaterThan(Integer value) {
+            addCriterion("show_grades >", value, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesGreaterThanOrEqualTo(Integer value) {
+            addCriterion("show_grades >=", value, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesLessThan(Integer value) {
+            addCriterion("show_grades <", value, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesLessThanOrEqualTo(Integer value) {
+            addCriterion("show_grades <=", value, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesIn(List<Integer> values) {
+            addCriterion("show_grades in", values, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesNotIn(List<Integer> values) {
+            addCriterion("show_grades not in", values, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesBetween(Integer value1, Integer value2) {
+            addCriterion("show_grades between", value1, value2, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowGradesNotBetween(Integer value1, Integer value2) {
+            addCriterion("show_grades not between", value1, value2, "showGrades");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninIsNull() {
+            addCriterion("signin is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninIsNotNull() {
+            addCriterion("signin is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninEqualTo(Integer value) {
+            addCriterion("signin =", value, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninNotEqualTo(Integer value) {
+            addCriterion("signin <>", value, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninGreaterThan(Integer value) {
+            addCriterion("signin >", value, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninGreaterThanOrEqualTo(Integer value) {
+            addCriterion("signin >=", value, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninLessThan(Integer value) {
+            addCriterion("signin <", value, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninLessThanOrEqualTo(Integer value) {
+            addCriterion("signin <=", value, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninIn(List<Integer> values) {
+            addCriterion("signin in", values, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninNotIn(List<Integer> values) {
+            addCriterion("signin not in", values, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninBetween(Integer value1, Integer value2) {
+            addCriterion("signin between", value1, value2, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSigninNotBetween(Integer value1, Integer value2) {
+            addCriterion("signin not between", value1, value2, "signin");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameIsNull() {
+            addCriterion("class_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameIsNotNull() {
+            addCriterion("class_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameEqualTo(String value) {
+            addCriterion("class_name =", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameNotEqualTo(String value) {
+            addCriterion("class_name <>", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameGreaterThan(String value) {
+            addCriterion("class_name >", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameGreaterThanOrEqualTo(String value) {
+            addCriterion("class_name >=", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameLessThan(String value) {
+            addCriterion("class_name <", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameLessThanOrEqualTo(String value) {
+            addCriterion("class_name <=", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameLike(String value) {
+            addCriterion("class_name like", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameNotLike(String value) {
+            addCriterion("class_name not like", value, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameIn(List<String> values) {
+            addCriterion("class_name in", values, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameNotIn(List<String> values) {
+            addCriterion("class_name not in", values, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameBetween(String value1, String value2) {
+            addCriterion("class_name between", value1, value2, "className");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassNameNotBetween(String value1, String value2) {
+            addCriterion("class_name not between", value1, value2, "className");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

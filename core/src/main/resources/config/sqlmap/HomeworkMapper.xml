@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teach.edu.core.mapper.GradeMapper">
-  <resultMap id="BaseResultMap" type="com.teach.edu.core.entity.Grade">
+<mapper namespace="com.teach.edu.core.mapper.HomeworkMapper">
+  <resultMap id="BaseResultMap" type="com.teach.edu.core.entity.Homework">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
-    <result column="student_id" jdbcType="BIGINT" property="studentId" />
-    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
-    <result column="course_grade" jdbcType="INTEGER" property="courseGrade" />
-    <result column="teach_name" jdbcType="VARCHAR" property="teachName" />
-    <result column="grades" jdbcType="INTEGER" property="grades" />
-    <result column="test_scores" jdbcType="INTEGER" property="testScores" />
-    <result column="show_grades" jdbcType="INTEGER" property="showGrades" />
-    <result column="signin" jdbcType="INTEGER" property="signin" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="teach_name" jdbcType="VARCHAR" property="teachName" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,16 +71,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, updated_at, created_at, deleted_at, student_id, course_name, course_grade, teach_name, 
-    grades, test_scores, show_grades, signin, class_name
+    id, updated_at, created_at, deleted_at, title, content, class_name, teach_name, course_name
   </sql>
-  <select id="selectByExample" parameterType="com.teach.edu.core.entity.GradeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.teach.edu.core.entity.HomeworkExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from grade
+    from homework
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -95,33 +90,31 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from grade
+    from homework
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from grade
+    delete from homework
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.teach.edu.core.entity.GradeExample">
-    delete from grade
+  <delete id="deleteByExample" parameterType="com.teach.edu.core.entity.HomeworkExample">
+    delete from homework
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.teach.edu.core.entity.Grade">
-    insert into grade (id, updated_at, created_at, 
-      deleted_at, student_id, course_name, 
-      course_grade, teach_name, grades, 
-      test_scores, show_grades, signin, 
-      class_name)
+  <insert id="insert" parameterType="com.teach.edu.core.entity.Homework">
+    insert into homework (id, updated_at, created_at, 
+      deleted_at, title, content, 
+      class_name, teach_name, course_name
+      )
     values (#{id,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{deletedAt,jdbcType=TIMESTAMP}, #{studentId,jdbcType=BIGINT}, #{courseName,jdbcType=VARCHAR}, 
-      #{courseGrade,jdbcType=INTEGER}, #{teachName,jdbcType=VARCHAR}, #{grades,jdbcType=INTEGER}, 
-      #{testScores,jdbcType=INTEGER}, #{showGrades,jdbcType=INTEGER}, #{signin,jdbcType=INTEGER}, 
-      #{className,jdbcType=VARCHAR})
+      #{deletedAt,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{className,jdbcType=VARCHAR}, #{teachName,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Grade">
-    insert into grade
+  <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Homework">
+    insert into homework
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -135,32 +128,20 @@
       <if test="deletedAt != null">
         deleted_at,
       </if>
-      <if test="studentId != null">
-        student_id,
+      <if test="title != null">
+        title,
       </if>
-      <if test="courseName != null">
-        course_name,
+      <if test="content != null">
+        content,
       </if>
-      <if test="courseGrade != null">
-        course_grade,
+      <if test="className != null">
+        class_name,
       </if>
       <if test="teachName != null">
         teach_name,
       </if>
-      <if test="grades != null">
-        grades,
-      </if>
-      <if test="testScores != null">
-        test_scores,
-      </if>
-      <if test="showGrades != null">
-        show_grades,
-      </if>
-      <if test="signin != null">
-        signin,
-      </if>
-      <if test="className != null">
-        class_name,
+      <if test="courseName != null">
+        course_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -176,43 +157,31 @@
       <if test="deletedAt != null">
         #{deletedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="studentId != null">
-        #{studentId,jdbcType=BIGINT},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
-      <if test="courseName != null">
-        #{courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="courseGrade != null">
-        #{courseGrade,jdbcType=INTEGER},
-      </if>
-      <if test="teachName != null">
-        #{teachName,jdbcType=VARCHAR},
-      </if>
-      <if test="grades != null">
-        #{grades,jdbcType=INTEGER},
-      </if>
-      <if test="testScores != null">
-        #{testScores,jdbcType=INTEGER},
-      </if>
-      <if test="showGrades != null">
-        #{showGrades,jdbcType=INTEGER},
-      </if>
-      <if test="signin != null">
-        #{signin,jdbcType=INTEGER},
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="className != null">
         #{className,jdbcType=VARCHAR},
       </if>
+      <if test="teachName != null">
+        #{teachName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null">
+        #{courseName,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.teach.edu.core.entity.GradeExample" resultType="java.lang.Long">
-    select count(*) from grade
+  <select id="countByExample" parameterType="com.teach.edu.core.entity.HomeworkExample" resultType="java.lang.Long">
+    select count(*) from homework
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update grade
+    update homework
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -226,32 +195,20 @@
       <if test="record.deletedAt != null">
         deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.studentId != null">
-        student_id = #{record.studentId,jdbcType=BIGINT},
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.courseName != null">
-        course_name = #{record.courseName,jdbcType=VARCHAR},
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.courseGrade != null">
-        course_grade = #{record.courseGrade,jdbcType=INTEGER},
+      <if test="record.className != null">
+        class_name = #{record.className,jdbcType=VARCHAR},
       </if>
       <if test="record.teachName != null">
         teach_name = #{record.teachName,jdbcType=VARCHAR},
       </if>
-      <if test="record.grades != null">
-        grades = #{record.grades,jdbcType=INTEGER},
-      </if>
-      <if test="record.testScores != null">
-        test_scores = #{record.testScores,jdbcType=INTEGER},
-      </if>
-      <if test="record.showGrades != null">
-        show_grades = #{record.showGrades,jdbcType=INTEGER},
-      </if>
-      <if test="record.signin != null">
-        signin = #{record.signin,jdbcType=INTEGER},
-      </if>
-      <if test="record.className != null">
-        class_name = #{record.className,jdbcType=VARCHAR},
+      <if test="record.courseName != null">
+        course_name = #{record.courseName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -259,26 +216,22 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update grade
+    update homework
     set id = #{record.id,jdbcType=BIGINT},
       updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
-      student_id = #{record.studentId,jdbcType=BIGINT},
-      course_name = #{record.courseName,jdbcType=VARCHAR},
-      course_grade = #{record.courseGrade,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      class_name = #{record.className,jdbcType=VARCHAR},
       teach_name = #{record.teachName,jdbcType=VARCHAR},
-      grades = #{record.grades,jdbcType=INTEGER},
-      test_scores = #{record.testScores,jdbcType=INTEGER},
-      show_grades = #{record.showGrades,jdbcType=INTEGER},
-      signin = #{record.signin,jdbcType=INTEGER},
-      class_name = #{record.className,jdbcType=VARCHAR}
+      course_name = #{record.courseName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.teach.edu.core.entity.Grade">
-    update grade
+  <update id="updateByPrimaryKeySelective" parameterType="com.teach.edu.core.entity.Homework">
+    update homework
     <set>
       <if test="updatedAt != null">
         updated_at = #{updatedAt,jdbcType=TIMESTAMP},
@@ -289,50 +242,34 @@
       <if test="deletedAt != null">
         deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="studentId != null">
-        student_id = #{studentId,jdbcType=BIGINT},
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="courseName != null">
-        course_name = #{courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="courseGrade != null">
-        course_grade = #{courseGrade,jdbcType=INTEGER},
-      </if>
-      <if test="teachName != null">
-        teach_name = #{teachName,jdbcType=VARCHAR},
-      </if>
-      <if test="grades != null">
-        grades = #{grades,jdbcType=INTEGER},
-      </if>
-      <if test="testScores != null">
-        test_scores = #{testScores,jdbcType=INTEGER},
-      </if>
-      <if test="showGrades != null">
-        show_grades = #{showGrades,jdbcType=INTEGER},
-      </if>
-      <if test="signin != null">
-        signin = #{signin,jdbcType=INTEGER},
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="className != null">
         class_name = #{className,jdbcType=VARCHAR},
       </if>
+      <if test="teachName != null">
+        teach_name = #{teachName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null">
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.teach.edu.core.entity.Grade">
-    update grade
+  <update id="updateByPrimaryKey" parameterType="com.teach.edu.core.entity.Homework">
+    update homework
     set updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
-      student_id = #{studentId,jdbcType=BIGINT},
-      course_name = #{courseName,jdbcType=VARCHAR},
-      course_grade = #{courseGrade,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR},
       teach_name = #{teachName,jdbcType=VARCHAR},
-      grades = #{grades,jdbcType=INTEGER},
-      test_scores = #{testScores,jdbcType=INTEGER},
-      show_grades = #{showGrades,jdbcType=INTEGER},
-      signin = #{signin,jdbcType=INTEGER},
-      class_name = #{className,jdbcType=VARCHAR}
+      course_name = #{courseName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

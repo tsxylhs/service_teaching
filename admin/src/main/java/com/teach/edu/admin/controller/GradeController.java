@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.IdGenerator;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 /**
  * @ClassName GradeController
  * @Author lvhoushuai(tsxylhs @ outlook.com)
@@ -52,7 +54,7 @@ public class GradeController {
     @PostMapping("/add")
     @ApiOperation(value = "添加新的学习成绩")
     public Result add(@RequestBody Grade grade) {
-        grade.setId(idGenerator.generateId().node());
+        grade.setId(new Random().nextLong());
         gradeService.add(grade);
         return Result.ok();
     }
