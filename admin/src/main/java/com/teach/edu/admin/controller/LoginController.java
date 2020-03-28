@@ -64,7 +64,6 @@ public class LoginController {
     @ApiImplicitParam(paramType = "weblodgin")
     public Result weblogin(@RequestBody WxUser wxUser) {
         log.info(wxUser.toString());
-        wxUserService.CheckLogin(wxUser);
         return wxUserService.CheckLogin(wxUser);
     }
 

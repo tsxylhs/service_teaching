@@ -19,6 +19,8 @@ public class Remind {
 
     private String status;
 
+    private Long userId;
+
     public Long getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class Remind {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

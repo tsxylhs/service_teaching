@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.IdGenerator;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 /**
  * @ClassName ErrorMessageController
  * @Author lvhoushuai(tsxylhs @ outlook.com)
@@ -51,7 +53,7 @@ public class ErrorMessageController {
     @PostMapping("/add")
     @ApiOperation(value = "添加错误信息")
     public Result add(@RequestBody Errormessage errormessage) {
-        errormessage.setId(idGenerator.generateId().node());
+        errormessage.setId(new Random().nextLong());
         errormessageService.add(errormessage);
         return Result.ok();
     }

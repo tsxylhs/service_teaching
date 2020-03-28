@@ -9,6 +9,7 @@ import com.teach.edu.core.entity.RemindExample;
 import com.teach.edu.core.mapper.RemindMapper;
 import com.teach.edu.core.service.RemindService;
 import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.IdGenerator;
@@ -28,13 +29,14 @@ public class RemindServiceImp implements RemindService {
     RemindMapper remindMapper;
 
 
-
-
-
     @Override
-    public Result list() {
+    public Result list(PageRequest pageRequest) {
         RemindExample example = new RemindExample();
         RemindExample.Criteria c = example.createCriteria();
+        if (!Strings.isEmpty(pageRequest.getConditions().get("userId"))) {
+            String useID = pageRequest.getConditions().get("userId");
+            c.andUserIdEqualTo(Long.parseLong(useID));
+        }
         example.setOrderByClause("created_at desc");
         List<Remind> Remindlist = remindMapper.selectByExample(example);
         return Result.ok(Remindlist);
@@ -42,7 +44,16 @@ public class RemindServiceImp implements RemindService {
 
     @Override
     public Remind get(long id) {
-        return remindMapper.selectByPrimaryKey(id);
+        RemindExample example = new RemindExample();
+        RemindExample.Criteria c = example.createCriteria();
+        c.andUserIdEqualTo(id);
+        example.setOrderByClause("created_at desc");
+        List<Remind> Remindlist = remindMapper.selectByExample(example);
+        if (Remindlist.size() > 0) {
+            return Remindlist.get(0);
+        } else {
+            return null;
+        }
     }
 
     @Override

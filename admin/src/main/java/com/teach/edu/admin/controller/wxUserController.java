@@ -26,6 +26,21 @@ import java.util.Random;
 public class wxUserController {
     @Autowired
     WxUserService wxUserService;
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "根据Id获取信息")
+    @ApiImplicitParam(paramType = "query", name = "id", value = "用户id", required = true, dataType = "long")
+    public Result get(@PathVariable Long id) {
+        return Result.ok(wxUserService.get(id));
+    }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "更新学生信息")
+    @ApiImplicitParam(paramType = "update", name = "WxUser", required = true, dataType = "wxUser")
+    public Result update(@RequestBody WxUser wxUser) {
+        return Result.ok(wxUserService.update(wxUser));
+    }
+
     @PostMapping("/list")
     @ApiOperation(value = "获取学生列表")
     public Result userList(@RequestBody PageRequest pageRequest) {

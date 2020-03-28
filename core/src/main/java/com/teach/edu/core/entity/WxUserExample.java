@@ -905,73 +905,73 @@ public class WxUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameIsNull() {
-            addCriterion("calss_name is null");
+        public Criteria andClassNameIsNull() {
+            addCriterion("class_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameIsNotNull() {
-            addCriterion("calss_name is not null");
+        public Criteria andClassNameIsNotNull() {
+            addCriterion("class_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameEqualTo(String value) {
-            addCriterion("calss_name =", value, "calssName");
+        public Criteria andClassNameEqualTo(String value) {
+            addCriterion("class_name =", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameNotEqualTo(String value) {
-            addCriterion("calss_name <>", value, "calssName");
+        public Criteria andClassNameNotEqualTo(String value) {
+            addCriterion("class_name <>", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameGreaterThan(String value) {
-            addCriterion("calss_name >", value, "calssName");
+        public Criteria andClassNameGreaterThan(String value) {
+            addCriterion("class_name >", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameGreaterThanOrEqualTo(String value) {
-            addCriterion("calss_name >=", value, "calssName");
+        public Criteria andClassNameGreaterThanOrEqualTo(String value) {
+            addCriterion("class_name >=", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameLessThan(String value) {
-            addCriterion("calss_name <", value, "calssName");
+        public Criteria andClassNameLessThan(String value) {
+            addCriterion("class_name <", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameLessThanOrEqualTo(String value) {
-            addCriterion("calss_name <=", value, "calssName");
+        public Criteria andClassNameLessThanOrEqualTo(String value) {
+            addCriterion("class_name <=", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameLike(String value) {
-            addCriterion("calss_name like", value, "calssName");
+        public Criteria andClassNameLike(String value) {
+            addCriterion("class_name like", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameNotLike(String value) {
-            addCriterion("calss_name not like", value, "calssName");
+        public Criteria andClassNameNotLike(String value) {
+            addCriterion("class_name not like", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameIn(List<String> values) {
-            addCriterion("calss_name in", values, "calssName");
+        public Criteria andClassNameIn(List<String> values) {
+            addCriterion("class_name in", values, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameNotIn(List<String> values) {
-            addCriterion("calss_name not in", values, "calssName");
+        public Criteria andClassNameNotIn(List<String> values) {
+            addCriterion("class_name not in", values, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameBetween(String value1, String value2) {
-            addCriterion("calss_name between", value1, value2, "calssName");
+        public Criteria andClassNameBetween(String value1, String value2) {
+            addCriterion("class_name between", value1, value2, "className");
             return (Criteria) this;
         }
 
-        public Criteria andCalssNameNotBetween(String value1, String value2) {
-            addCriterion("calss_name not between", value1, value2, "calssName");
+        public Criteria andClassNameNotBetween(String value1, String value2) {
+            addCriterion("class_name not between", value1, value2, "className");
             return (Criteria) this;
         }
 

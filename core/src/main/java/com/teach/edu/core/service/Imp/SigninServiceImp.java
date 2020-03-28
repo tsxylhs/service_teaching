@@ -44,18 +44,18 @@ public class SigninServiceImp implements SigninService {
     }
 
     @Override
-    public int add(Signin notes) {
+    public Result add(Signin signin) {
 
         Date now = new Date();
-        notes.setCreatedAt(now);
-        notes.setUpdatedAt(now);
-
-        return signinMapper.insert(notes);
+        signin.setCreatedAt(now);
+        signin.setUpdatedAt(now);
+        signinMapper.insert(signin);
+        return Result.ok(signin);
     }
 
     @Override
-    public int update(Signin notes) {
-        return signinMapper.updateByPrimaryKey(notes);
+    public int update(Signin signin) {
+        return signinMapper.updateByPrimaryKey(signin);
     }
 
     @Override

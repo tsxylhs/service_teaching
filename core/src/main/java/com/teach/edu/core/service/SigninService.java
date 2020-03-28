@@ -14,7 +14,7 @@ public interface SigninService {
     //根据id查询唯一对象
     Signin get(long id);
     //新增
-    int add(Signin signin);
+    Result add(Signin signin);
     //更新
     int update(Signin signin);
 

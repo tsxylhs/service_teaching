@@ -1,6 +1,7 @@
 package com.teach.edu.core.service;
 
 import com.edu.common.code.model.Result;
+import com.edu.common.code.page.PageRequest;
 import com.teach.edu.core.entity.Grade;
 import com.teach.edu.core.entity.Homework;
 
@@ -10,7 +11,7 @@ import com.teach.edu.core.entity.Homework;
  * @Date 2020-03-24
  **/
 public interface GradeService {
-    Result list();
+    Result list(PageRequest pageRequest);
     //根据id查询唯一对象
     Grade get(long id);
     //新增

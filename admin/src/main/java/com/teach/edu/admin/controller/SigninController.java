@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.IdGenerator;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 /**
  * @ClassName SigninController
  * @Author lvhoushuai(tsxylhs @ outlook.com)
@@ -34,7 +36,7 @@ public class SigninController {
         return Result.ok(signinService.get(id));
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     @ApiOperation(value = "更新学习签到")
     @ApiImplicitParam(paramType = "update", name = "Signin", required = true, dataType = "signin")
     public Result update(@RequestBody Signin signin) {
@@ -50,8 +52,7 @@ public class SigninController {
     @PostMapping("/add")
     @ApiOperation(value = "添加新的学习签到")
     public Result add(@RequestBody Signin signin) {
-        signin.setId(idGenerator.generateId().node());
-        signinService.add(signin);
-        return Result.ok();
+       signin.setId(new Random().nextLong());
+        return   signinService.add(signin);
     }
 }

@@ -18,12 +18,11 @@ public interface NotesService {
 
     Result list(Integer number);
 
-    Result list(String type);
 
     Result list(String type, Integer number);
 
     //材料列表
-    Result list(PageRequest pageRequest);
+    Result list(String UserId);
 
     //往期活动回顾
     Result list(String id, PageRequest pageRequest);

@@ -7,6 +7,7 @@ import com.teach.edu.core.entity.NotesExample;
 import com.teach.edu.core.mapper.NotesMapper;
 import com.teach.edu.core.service.NotesService;
 import lombok.extern.log4j.Log4j2;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.IdGenerator;
@@ -46,10 +47,6 @@ public class NotesServiceImp implements NotesService {
         return Result.ok(noteslist);
     }
 
-    @Override
-    public Result list(String type) {
-        return null;
-    }
 
     @Override
     public Result list(String type, Integer number) {
@@ -57,8 +54,12 @@ public class NotesServiceImp implements NotesService {
     }
 
     @Override
-    public Result list(PageRequest pageRequest) {
-        return null;
+    public Result list(String userId) {
+           NotesExample ex=new NotesExample();
+           NotesExample.Criteria c=ex.createCriteria();
+           c.andUserIdEqualTo(Long.parseLong(userId));
+           List<Notes> noteslist = notesMapper.selectByExample(ex);
+           return Result.ok(noteslist);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.teach.edu.core.service.Imp;
 
 
 import com.edu.common.code.model.Result;
+import com.edu.common.code.page.PageRequest;
 import com.teach.edu.core.entity.Homework;
 import com.teach.edu.core.entity.HomeworkExample;
 import com.teach.edu.core.entity.Myhomework;
@@ -11,6 +12,7 @@ import com.teach.edu.core.mapper.MyhomeworkMapper;
 import com.teach.edu.core.service.HomeworkService;
 import com.teach.edu.core.service.MyhomeworkService;
 import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.IdGenerator;
@@ -31,9 +33,13 @@ public class HomeworkServiceImp implements HomeworkService {
 
 
     @Override
-    public Result list() {
+    public Result list(PageRequest pageRequest) {
         HomeworkExample ex=new HomeworkExample();
         HomeworkExample.Criteria c= ex.createCriteria();
+        if (Strings.isEmpty(pageRequest.getConditions().get("className"))){
+          String className= pageRequest.getConditions().get("className");
+          c.andClassNameEqualTo(className);
+        }
         ex.setOrderByClause("created_at desc");
         List<Homework> homeworklists=homeworkMapper.selectByExample(ex);
         return Result.ok(homeworklists);

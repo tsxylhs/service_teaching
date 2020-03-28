@@ -2,6 +2,7 @@ package com.teach.edu.admin.controller;
 
 import com.edu.common.code.model.Result;
 import com.edu.common.code.page.PageRequest;
+import com.teach.edu.admin.model.NoteVo;
 import com.teach.edu.core.entity.Notes;
 import com.teach.edu.core.service.NotesService;
 import com.teach.edu.core.service.NotesService;
@@ -12,6 +13,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.IdGenerator;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Random;
 
 /**
  * @ClassName NotesController
@@ -35,7 +38,7 @@ public class NotesController {
         return Result.ok(notesService.get(id));
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     @ApiOperation(value = "更新笔记")
     @ApiImplicitParam(paramType = "update", name = "Notes", required = true, dataType = "notes")
     public Result update(@RequestBody Notes notes) {
@@ -44,15 +47,22 @@ public class NotesController {
 
     @PostMapping("/list")
     @ApiOperation(value = "获取笔记列表")
-    public Result userList(@RequestBody PageRequest pageRequest) {
-        return notesService.list();
+    public Result userList(@RequestBody NoteVo noteVo) {
+        return notesService.list(noteVo.userId);
     }
 
     @PostMapping("/add")
     @ApiOperation(value = "添加新的笔记")
     public Result add(@RequestBody Notes notes) {
-        notes.setId(idGenerator.generateId().node());
+        notes.setId(new Random().nextLong());
         notesService.add(notes);
         return Result.ok();
     }
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除笔记")
+    @ApiImplicitParam(paramType = "query", name = "id", value = "用户id", required = true, dataType = "long")
+    public Result Delete(@PathVariable Long id) {
+        return Result.ok(notesService.delete(id));
+    }
+
 }

@@ -16,7 +16,7 @@ public interface WxUserService {
     //新增
     int add(WxUser wxUser);
     //更新
-    int update(WxUser wxUser);
+    WxUser update(WxUser wxUser);
 
     //删除
     int delete(long id);

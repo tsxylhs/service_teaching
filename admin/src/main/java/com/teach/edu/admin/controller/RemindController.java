@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.IdGenerator;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 /**
  * @ClassName RemindController
  * @Author lvhoushuai(tsxylhs @ outlook.com)
@@ -36,7 +38,7 @@ public class RemindController {
         return Result.ok(remindService.get(id));
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     @ApiOperation(value = "更新提醒")
     @ApiImplicitParam(paramType = "update", name = "Remind", required = true, dataType = "remind")
     public Result update(@RequestBody Remind remind) {
@@ -46,14 +48,21 @@ public class RemindController {
     @PostMapping("/list")
     @ApiOperation(value = "获取提醒列表")
     public Result userList(@RequestBody PageRequest pageRequest) {
-        return remindService.list();
+        return remindService.list(pageRequest);
     }
 
     @PostMapping("/add")
     @ApiOperation(value = "添加新的提醒")
     public Result add(@RequestBody Remind remind) {
-        remind.setId(idGenerator.generateId().node());
+        remind.setId(new Random().nextLong());
         remindService.add(remind);
         return Result.ok();
     }
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除提醒")
+    @ApiImplicitParam(paramType = "query", name = "id", value = "用户id", required = true, dataType = "long")
+    public Result Delete(@PathVariable Long id) {
+        return Result.ok(remindService.delete(id));
+    }
+
 }

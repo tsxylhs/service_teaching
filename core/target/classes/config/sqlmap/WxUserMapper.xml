@@ -14,7 +14,7 @@
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
-    <result column="calss_name" jdbcType="VARCHAR" property="calssName" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="contry" jdbcType="VARCHAR" property="contry" />
   </resultMap>
@@ -78,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, user_name, password, email, mobile, student_id, open_id, avatar_url, nick_name, 
-    updated_at, created_at, deleted_at, calss_name, code, contry
+    updated_at, created_at, deleted_at, class_name, code, contry
   </sql>
   <select id="selectByExample" parameterType="com.teach.edu.core.entity.WxUserExample" resultMap="BaseResultMap">
     select
@@ -115,13 +115,13 @@
       email, mobile, student_id, 
       open_id, avatar_url, nick_name, 
       updated_at, created_at, deleted_at, 
-      calss_name, code, contry
+      class_name, code, contry
       )
     values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, 
       #{openId,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
       #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{deletedAt,jdbcType=TIMESTAMP}, 
-      #{calssName,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{contry,jdbcType=VARCHAR}
+      #{className,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{contry,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.teach.edu.core.entity.WxUser">
@@ -163,8 +163,8 @@
       <if test="deletedAt != null">
         deleted_at,
       </if>
-      <if test="calssName != null">
-        calss_name,
+      <if test="className != null">
+        class_name,
       </if>
       <if test="code != null">
         code,
@@ -210,8 +210,8 @@
       <if test="deletedAt != null">
         #{deletedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="calssName != null">
-        #{calssName,jdbcType=VARCHAR},
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
@@ -266,8 +266,8 @@
       <if test="record.deletedAt != null">
         deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.calssName != null">
-        calss_name = #{record.calssName,jdbcType=VARCHAR},
+      <if test="record.className != null">
+        class_name = #{record.className,jdbcType=VARCHAR},
       </if>
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
@@ -294,7 +294,7 @@
       updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
-      calss_name = #{record.calssName,jdbcType=VARCHAR},
+      class_name = #{record.className,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       contry = #{record.contry,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -337,8 +337,8 @@
       <if test="deletedAt != null">
         deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="calssName != null">
-        calss_name = #{calssName,jdbcType=VARCHAR},
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -362,7 +362,7 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
-      calss_name = #{calssName,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       contry = #{contry,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

@@ -48,7 +48,7 @@ public class GradeController {
     @PostMapping("/list")
     @ApiOperation(value = "获取学习成绩列表")
     public Result userList(@RequestBody PageRequest pageRequest) {
-        return gradeService.list();
+        return gradeService.list(pageRequest);
     }
 
     @PostMapping("/add")

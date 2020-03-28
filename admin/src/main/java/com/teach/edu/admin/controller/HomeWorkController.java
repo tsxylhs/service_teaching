@@ -36,7 +36,7 @@ public class HomeWorkController {
         return Result.ok(homeworkService.get(id));
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     @ApiOperation(value = "更新作业内容")
     @ApiImplicitParam(paramType = "update", name = "Homework", required = true, dataType = "homework")
     public Result update(@RequestBody Homework homework) {
@@ -46,7 +46,7 @@ public class HomeWorkController {
     @PostMapping("/list")
     @ApiOperation(value = "获取作业列表")
     public Result userList(@RequestBody PageRequest pageRequest) {
-        return homeworkService.list();
+        return homeworkService.list(pageRequest);
     }
 
     @PostMapping("/add")

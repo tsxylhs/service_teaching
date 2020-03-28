@@ -10,6 +10,7 @@
     <result column="reminddesc" jdbcType="VARCHAR" property="reminddesc" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, updated_at, created_at, deleted_at, title, reminddesc, content, status
+    id, updated_at, created_at, deleted_at, title, reminddesc, content, status, user_id
   </sql>
   <select id="selectByExample" parameterType="com.teach.edu.core.entity.RemindExample" resultMap="BaseResultMap">
     select
@@ -105,10 +106,12 @@
   <insert id="insert" parameterType="com.teach.edu.core.entity.Remind">
     insert into remind (id, updated_at, created_at, 
       deleted_at, title, reminddesc, 
-      content, status)
+      content, status, user_id
+      )
     values (#{id,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{deletedAt,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{reminddesc,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+      #{content,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Remind">
     insert into remind
@@ -137,6 +140,9 @@
       <if test="status != null">
         status,
       </if>
+      <if test="userId != null">
+        user_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -162,6 +168,9 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -198,6 +207,9 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
       </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +224,8 @@
       title = #{record.title,jdbcType=VARCHAR},
       reminddesc = #{record.reminddesc,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=VARCHAR}
+      status = #{record.status,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +254,9 @@
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -252,7 +268,8 @@
       title = #{title,jdbcType=VARCHAR},
       reminddesc = #{reminddesc,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR}
+      status = #{status,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

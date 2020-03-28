@@ -5,6 +5,7 @@ import com.edu.common.code.model.Result;
 
 
 import com.github.pagehelper.util.StringUtil;
+import com.teach.edu.core.entity.User;
 import com.teach.edu.core.entity.WxUser;
 import com.teach.edu.core.entity.WxUserExample;
 import com.teach.edu.core.mapper.WxUserMapper;
@@ -56,17 +57,18 @@ public class WxUserServiceImp implements WxUserService {
     }
 
     @Override
-    public int add(WxUser notes) {
+    public int add(WxUser wxUser) {
         Date now = new Date();
-        notes.setCreatedAt(now);
-        notes.setUpdatedAt(now);
+        wxUser.setCreatedAt(now);
+        wxUser.setUpdatedAt(now);
 
-        return wxUserMapper.insert(notes);
+        return wxUserMapper.insert(wxUser);
     }
 
     @Override
-    public int update(WxUser notes) {
-        return wxUserMapper.updateByPrimaryKey(notes);
+    public WxUser update(WxUser wxUser) {
+        wxUserMapper.updateByPrimaryKey(wxUser);
+        return wxUser;
     }
 
     @Override
@@ -116,9 +118,9 @@ public class WxUserServiceImp implements WxUserService {
         WxUserExample wxe=new WxUserExample();
        WxUserExample.Criteria c= wxe.createCriteria();
        c.andOpenIdEqualTo(openId);
-        long i=wxUserMapper.countByExample(wxe);
-        if (i>0){
-            return Result.ok(wxUser);
+        List<WxUser>  wxUsers=wxUserMapper.selectByExample(wxe);
+        if (wxUsers.size()>0){
+            return Result.ok(wxUsers.get(0));
         }else{
             wxUser.setId(new Random().nextLong());
             wxUser.setCreatedAt(new Date());

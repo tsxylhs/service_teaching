@@ -27,7 +27,7 @@ public class WxUser {
 
     private Date deletedAt;
 
-    private String calssName;
+    private String className;
 
     private String code;
 
@@ -129,12 +129,12 @@ public class WxUser {
         this.deletedAt = deletedAt;
     }
 
-    public String getCalssName() {
-        return calssName;
+    public String getClassName() {
+        return className;
     }
 
-    public void setCalssName(String calssName) {
-        this.calssName = calssName;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public String getCode() {
@@ -151,26 +151,5 @@ public class WxUser {
 
     public void setContry(String contry) {
         this.contry = contry;
-    }
-
-    @Override
-    public String toString() {
-        return "WxUser{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", studentId='" + studentId + '\'' +
-                ", openId='" + openId + '\'' +
-                ", avatarUrl='" + avatarUrl + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", updatedAt=" + updatedAt +
-                ", createdAt=" + createdAt +
-                ", deletedAt=" + deletedAt +
-                ", calssName='" + calssName + '\'' +
-                ", code='" + code + '\'' +
-                ", contry='" + contry + '\'' +
-                '}';
     }
 }
