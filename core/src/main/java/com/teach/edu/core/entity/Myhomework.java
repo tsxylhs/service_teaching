@@ -13,13 +13,17 @@ public class Myhomework {
 
     private Long homeworkId;
 
-    private Long homeworkUrl;
+    private String homeworkUrl;
 
     private String homeworkDesc;
 
     private String homeworkStatus;
 
     private Long userId;
+
+    private String userName;
+
+    private String className;
 
     public Long getId() {
         return id;
@@ -61,11 +65,11 @@ public class Myhomework {
         this.homeworkId = homeworkId;
     }
 
-    public Long getHomeworkUrl() {
+    public String getHomeworkUrl() {
         return homeworkUrl;
     }
 
-    public void setHomeworkUrl(Long homeworkUrl) {
+    public void setHomeworkUrl(String homeworkUrl) {
         this.homeworkUrl = homeworkUrl;
     }
 
@@ -91,5 +95,21 @@ public class Myhomework {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

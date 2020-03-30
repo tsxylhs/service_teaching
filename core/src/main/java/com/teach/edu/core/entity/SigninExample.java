@@ -665,73 +665,73 @@ public class SigninExample {
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameIsNull() {
-            addCriterion("course_name is null");
+        public Criteria andCrouseNameIsNull() {
+            addCriterion("crouse_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameIsNotNull() {
-            addCriterion("course_name is not null");
+        public Criteria andCrouseNameIsNotNull() {
+            addCriterion("crouse_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameEqualTo(String value) {
-            addCriterion("course_name =", value, "courseName");
+        public Criteria andCrouseNameEqualTo(String value) {
+            addCriterion("crouse_name =", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameNotEqualTo(String value) {
-            addCriterion("course_name <>", value, "courseName");
+        public Criteria andCrouseNameNotEqualTo(String value) {
+            addCriterion("crouse_name <>", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameGreaterThan(String value) {
-            addCriterion("course_name >", value, "courseName");
+        public Criteria andCrouseNameGreaterThan(String value) {
+            addCriterion("crouse_name >", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameGreaterThanOrEqualTo(String value) {
-            addCriterion("course_name >=", value, "courseName");
+        public Criteria andCrouseNameGreaterThanOrEqualTo(String value) {
+            addCriterion("crouse_name >=", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameLessThan(String value) {
-            addCriterion("course_name <", value, "courseName");
+        public Criteria andCrouseNameLessThan(String value) {
+            addCriterion("crouse_name <", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameLessThanOrEqualTo(String value) {
-            addCriterion("course_name <=", value, "courseName");
+        public Criteria andCrouseNameLessThanOrEqualTo(String value) {
+            addCriterion("crouse_name <=", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameLike(String value) {
-            addCriterion("course_name like", value, "courseName");
+        public Criteria andCrouseNameLike(String value) {
+            addCriterion("crouse_name like", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameNotLike(String value) {
-            addCriterion("course_name not like", value, "courseName");
+        public Criteria andCrouseNameNotLike(String value) {
+            addCriterion("crouse_name not like", value, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameIn(List<String> values) {
-            addCriterion("course_name in", values, "courseName");
+        public Criteria andCrouseNameIn(List<String> values) {
+            addCriterion("crouse_name in", values, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameNotIn(List<String> values) {
-            addCriterion("course_name not in", values, "courseName");
+        public Criteria andCrouseNameNotIn(List<String> values) {
+            addCriterion("crouse_name not in", values, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameBetween(String value1, String value2) {
-            addCriterion("course_name between", value1, value2, "courseName");
+        public Criteria andCrouseNameBetween(String value1, String value2) {
+            addCriterion("crouse_name between", value1, value2, "crouseName");
             return (Criteria) this;
         }
 
-        public Criteria andCourseNameNotBetween(String value1, String value2) {
-            addCriterion("course_name not between", value1, value2, "courseName");
+        public Criteria andCrouseNameNotBetween(String value1, String value2) {
+            addCriterion("crouse_name not between", value1, value2, "crouseName");
             return (Criteria) this;
         }
     }

@@ -11,6 +11,7 @@
     <result column="class_name" jdbcType="VARCHAR" property="className" />
     <result column="teach_name" jdbcType="VARCHAR" property="teachName" />
     <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="uids" jdbcType="ARRAY" property="uids" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, updated_at, created_at, deleted_at, title, content, class_name, teach_name, course_name
+    id, updated_at, created_at, deleted_at, title, content, class_name, teach_name, course_name, 
+    uids
   </sql>
   <select id="selectByExample" parameterType="com.teach.edu.core.entity.HomeworkExample" resultMap="BaseResultMap">
     select
@@ -106,12 +108,12 @@
   <insert id="insert" parameterType="com.teach.edu.core.entity.Homework">
     insert into homework (id, updated_at, created_at, 
       deleted_at, title, content, 
-      class_name, teach_name, course_name
-      )
+      class_name, teach_name, course_name, 
+      uids)
     values (#{id,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
       #{deletedAt,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{className,jdbcType=VARCHAR}, #{teachName,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}
-      )
+      #{className,jdbcType=VARCHAR}, #{teachName,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, 
+      #{uids,jdbcType=ARRAY})
   </insert>
   <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Homework">
     insert into homework
@@ -143,6 +145,9 @@
       <if test="courseName != null">
         course_name,
       </if>
+      <if test="uids != null">
+        uids,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -171,6 +176,9 @@
       </if>
       <if test="courseName != null">
         #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="uids != null">
+        #{uids,jdbcType=ARRAY},
       </if>
     </trim>
   </insert>
@@ -210,6 +218,9 @@
       <if test="record.courseName != null">
         course_name = #{record.courseName,jdbcType=VARCHAR},
       </if>
+      <if test="record.uids != null">
+        uids = #{record.uids,jdbcType=ARRAY},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +236,8 @@
       content = #{record.content,jdbcType=VARCHAR},
       class_name = #{record.className,jdbcType=VARCHAR},
       teach_name = #{record.teachName,jdbcType=VARCHAR},
-      course_name = #{record.courseName,jdbcType=VARCHAR}
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      uids = #{record.uids,jdbcType=ARRAY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +269,9 @@
       <if test="courseName != null">
         course_name = #{courseName,jdbcType=VARCHAR},
       </if>
+      <if test="uids != null">
+        uids = #{uids,jdbcType=ARRAY},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -269,7 +284,8 @@
       content = #{content,jdbcType=VARCHAR},
       class_name = #{className,jdbcType=VARCHAR},
       teach_name = #{teachName,jdbcType=VARCHAR},
-      course_name = #{courseName,jdbcType=VARCHAR}
+      course_name = #{courseName,jdbcType=VARCHAR},
+      uids = #{uids,jdbcType=ARRAY}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

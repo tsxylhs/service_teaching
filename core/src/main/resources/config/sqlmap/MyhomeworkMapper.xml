@@ -7,10 +7,12 @@
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
     <result column="homework_id" jdbcType="BIGINT" property="homeworkId" />
-    <result column="homework_url" jdbcType="BIGINT" property="homeworkUrl" />
+    <result column="homework_url" jdbcType="VARCHAR" property="homeworkUrl" />
     <result column="homework_desc" jdbcType="VARCHAR" property="homeworkDesc" />
     <result column="homework_status" jdbcType="VARCHAR" property="homeworkStatus" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, updated_at, created_at, deleted_at, homework_id, homework_url, homework_desc, 
-    homework_status, user_id
+    homework_status, user_id, user_name, class_name
   </sql>
   <select id="selectByExample" parameterType="com.teach.edu.core.entity.MyhomeworkExample" resultMap="BaseResultMap">
     select
@@ -107,12 +109,12 @@
   <insert id="insert" parameterType="com.teach.edu.core.entity.Myhomework">
     insert into myhomework (id, updated_at, created_at, 
       deleted_at, homework_id, homework_url, 
-      homework_desc, homework_status, user_id
-      )
+      homework_desc, homework_status, user_id, 
+      user_name, class_name)
     values (#{id,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{deletedAt,jdbcType=TIMESTAMP}, #{homeworkId,jdbcType=BIGINT}, #{homeworkUrl,jdbcType=BIGINT}, 
-      #{homeworkDesc,jdbcType=VARCHAR}, #{homeworkStatus,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}
-      )
+      #{deletedAt,jdbcType=TIMESTAMP}, #{homeworkId,jdbcType=BIGINT}, #{homeworkUrl,jdbcType=VARCHAR}, 
+      #{homeworkDesc,jdbcType=VARCHAR}, #{homeworkStatus,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{userName,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Myhomework">
     insert into myhomework
@@ -144,6 +146,12 @@
       <if test="userId != null">
         user_id,
       </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -162,7 +170,7 @@
         #{homeworkId,jdbcType=BIGINT},
       </if>
       <if test="homeworkUrl != null">
-        #{homeworkUrl,jdbcType=BIGINT},
+        #{homeworkUrl,jdbcType=VARCHAR},
       </if>
       <if test="homeworkDesc != null">
         #{homeworkDesc,jdbcType=VARCHAR},
@@ -172,6 +180,12 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -200,7 +214,7 @@
         homework_id = #{record.homeworkId,jdbcType=BIGINT},
       </if>
       <if test="record.homeworkUrl != null">
-        homework_url = #{record.homeworkUrl,jdbcType=BIGINT},
+        homework_url = #{record.homeworkUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.homeworkDesc != null">
         homework_desc = #{record.homeworkDesc,jdbcType=VARCHAR},
@@ -210,6 +224,12 @@
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.className != null">
+        class_name = #{record.className,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -223,10 +243,12 @@
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
       homework_id = #{record.homeworkId,jdbcType=BIGINT},
-      homework_url = #{record.homeworkUrl,jdbcType=BIGINT},
+      homework_url = #{record.homeworkUrl,jdbcType=VARCHAR},
       homework_desc = #{record.homeworkDesc,jdbcType=VARCHAR},
       homework_status = #{record.homeworkStatus,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=BIGINT}
+      user_id = #{record.userId,jdbcType=BIGINT},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      class_name = #{record.className,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,7 +269,7 @@
         homework_id = #{homeworkId,jdbcType=BIGINT},
       </if>
       <if test="homeworkUrl != null">
-        homework_url = #{homeworkUrl,jdbcType=BIGINT},
+        homework_url = #{homeworkUrl,jdbcType=VARCHAR},
       </if>
       <if test="homeworkDesc != null">
         homework_desc = #{homeworkDesc,jdbcType=VARCHAR},
@@ -258,6 +280,12 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=BIGINT},
       </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -267,10 +295,12 @@
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
       homework_id = #{homeworkId,jdbcType=BIGINT},
-      homework_url = #{homeworkUrl,jdbcType=BIGINT},
+      homework_url = #{homeworkUrl,jdbcType=VARCHAR},
       homework_desc = #{homeworkDesc,jdbcType=VARCHAR},
       homework_status = #{homeworkStatus,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT}
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

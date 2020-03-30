@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.teach.edu.core.mapper.HomeworkMapper">
-  <resultMap id="BaseResultMap" type="com.teach.edu.core.entity.Homework">
+<mapper namespace="com.teach.edu.core.mapper.RemindMapper">
+  <resultMap id="BaseResultMap" type="com.teach.edu.core.entity.Remind">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt" />
     <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="reminddesc" jdbcType="VARCHAR" property="reminddesc" />
     <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="class_name" jdbcType="VARCHAR" property="className" />
-    <result column="teach_name" jdbcType="VARCHAR" property="teachName" />
-    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
-    <result column="uids" jdbcType="ARRAY" property="uids" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,16 +71,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, updated_at, created_at, deleted_at, title, content, class_name, teach_name, course_name, 
-    uids
+    id, updated_at, created_at, deleted_at, title, reminddesc, content, status, user_id
   </sql>
-  <select id="selectByExample" parameterType="com.teach.edu.core.entity.HomeworkExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.teach.edu.core.entity.RemindExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from homework
+    from remind
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,31 +90,31 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from homework
+    from remind
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from homework
+    delete from remind
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.teach.edu.core.entity.HomeworkExample">
-    delete from homework
+  <delete id="deleteByExample" parameterType="com.teach.edu.core.entity.RemindExample">
+    delete from remind
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.teach.edu.core.entity.Homework">
-    insert into homework (id, updated_at, created_at, 
-      deleted_at, title, content, 
-      class_name, teach_name, course_name, 
-      uids)
+  <insert id="insert" parameterType="com.teach.edu.core.entity.Remind">
+    insert into remind (id, updated_at, created_at, 
+      deleted_at, title, reminddesc, 
+      content, status, user_id
+      )
     values (#{id,jdbcType=BIGINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{deletedAt,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{className,jdbcType=VARCHAR}, #{teachName,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, 
-      #{uids,jdbcType=ARRAY})
+      #{deletedAt,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{reminddesc,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Homework">
-    insert into homework
+  <insert id="insertSelective" parameterType="com.teach.edu.core.entity.Remind">
+    insert into remind
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -133,20 +131,17 @@
       <if test="title != null">
         title,
       </if>
+      <if test="reminddesc != null">
+        reminddesc,
+      </if>
       <if test="content != null">
         content,
       </if>
-      <if test="className != null">
-        class_name,
+      <if test="status != null">
+        status,
       </if>
-      <if test="teachName != null">
-        teach_name,
-      </if>
-      <if test="courseName != null">
-        course_name,
-      </if>
-      <if test="uids != null">
-        uids,
+      <if test="userId != null">
+        user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -165,31 +160,28 @@
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
+      <if test="reminddesc != null">
+        #{reminddesc,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="className != null">
-        #{className,jdbcType=VARCHAR},
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
       </if>
-      <if test="teachName != null">
-        #{teachName,jdbcType=VARCHAR},
-      </if>
-      <if test="courseName != null">
-        #{courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="uids != null">
-        #{uids,jdbcType=ARRAY},
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.teach.edu.core.entity.HomeworkExample" resultType="java.lang.Long">
-    select count(*) from homework
+  <select id="countByExample" parameterType="com.teach.edu.core.entity.RemindExample" resultType="java.lang.Long">
+    select count(*) from remind
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update homework
+    update remind
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -206,20 +198,17 @@
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
+      <if test="record.reminddesc != null">
+        reminddesc = #{record.reminddesc,jdbcType=VARCHAR},
+      </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.className != null">
-        class_name = #{record.className,jdbcType=VARCHAR},
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
       </if>
-      <if test="record.teachName != null">
-        teach_name = #{record.teachName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.courseName != null">
-        course_name = #{record.courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uids != null">
-        uids = #{record.uids,jdbcType=ARRAY},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -227,23 +216,22 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update homework
+    update remind
     set id = #{record.id,jdbcType=BIGINT},
       updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
       title = #{record.title,jdbcType=VARCHAR},
+      reminddesc = #{record.reminddesc,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
-      class_name = #{record.className,jdbcType=VARCHAR},
-      teach_name = #{record.teachName,jdbcType=VARCHAR},
-      course_name = #{record.courseName,jdbcType=VARCHAR},
-      uids = #{record.uids,jdbcType=ARRAY}
+      status = #{record.status,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.teach.edu.core.entity.Homework">
-    update homework
+  <update id="updateByPrimaryKeySelective" parameterType="com.teach.edu.core.entity.Remind">
+    update remind
     <set>
       <if test="updatedAt != null">
         updated_at = #{updatedAt,jdbcType=TIMESTAMP},
@@ -257,35 +245,31 @@
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
+      <if test="reminddesc != null">
+        reminddesc = #{reminddesc,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="className != null">
-        class_name = #{className,jdbcType=VARCHAR},
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
       </if>
-      <if test="teachName != null">
-        teach_name = #{teachName,jdbcType=VARCHAR},
-      </if>
-      <if test="courseName != null">
-        course_name = #{courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="uids != null">
-        uids = #{uids,jdbcType=ARRAY},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.teach.edu.core.entity.Homework">
-    update homework
+  <update id="updateByPrimaryKey" parameterType="com.teach.edu.core.entity.Remind">
+    update remind
     set updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
       title = #{title,jdbcType=VARCHAR},
+      reminddesc = #{reminddesc,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
-      class_name = #{className,jdbcType=VARCHAR},
-      teach_name = #{teachName,jdbcType=VARCHAR},
-      course_name = #{courseName,jdbcType=VARCHAR},
-      uids = #{uids,jdbcType=ARRAY}
+      status = #{status,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

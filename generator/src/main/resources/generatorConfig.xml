@@ -33,7 +33,7 @@
         </javaClientGenerator>
 
         <!-- 数据库表 -->
-        <table tableName="remind" enableSelectByExample="true"
+        <table tableName="signin" enableSelectByExample="true"
                enableDeleteByExample="true" enableCountByExample="true"
                enableUpdateByExample="true">
         </table>

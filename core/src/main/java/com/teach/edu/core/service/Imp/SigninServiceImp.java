@@ -32,8 +32,6 @@ public class SigninServiceImp implements SigninService {
     @Override
     public Result list() {
         SigninExample example = new SigninExample();
-        SigninExample.Criteria c = example.createCriteria();
-        example.setOrderByClause("created_at desc");
         List<Signin> Signinlist = signinMapper.selectByExample(example);
         return Result.ok(Signinlist);
     }

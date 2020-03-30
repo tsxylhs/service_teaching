@@ -21,7 +21,7 @@ public class Signin {
 
     private String teachName;
 
-    private String courseName;
+    private String crouseName;
 
     public Long getId() {
         return id;
@@ -95,11 +95,11 @@ public class Signin {
         this.teachName = teachName;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getCrouseName() {
+        return crouseName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCrouseName(String crouseName) {
+        this.crouseName = crouseName;
     }
 }

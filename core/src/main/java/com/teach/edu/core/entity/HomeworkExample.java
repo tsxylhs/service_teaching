@@ -694,6 +694,66 @@ public class HomeworkExample {
             addCriterion("course_name not between", value1, value2, "courseName");
             return (Criteria) this;
         }
+
+        public Criteria andUidsIsNull() {
+            addCriterion("uids is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsIsNotNull() {
+            addCriterion("uids is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsEqualTo(Object value) {
+            addCriterion("uids =", value, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsNotEqualTo(Object value) {
+            addCriterion("uids <>", value, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsGreaterThan(Object value) {
+            addCriterion("uids >", value, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsGreaterThanOrEqualTo(Object value) {
+            addCriterion("uids >=", value, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsLessThan(Object value) {
+            addCriterion("uids <", value, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsLessThanOrEqualTo(Object value) {
+            addCriterion("uids <=", value, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsIn(List<Object> values) {
+            addCriterion("uids in", values, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsNotIn(List<Object> values) {
+            addCriterion("uids not in", values, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsBetween(Object value1, Object value2) {
+            addCriterion("uids between", value1, value2, "uids");
+            return (Criteria) this;
+        }
+
+        public Criteria andUidsNotBetween(Object value1, Object value2) {
+            addCriterion("uids not between", value1, value2, "uids");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -5,9 +5,11 @@ import com.edu.common.code.model.Result;
 import com.teach.edu.core.entity.Myhomework;
 import com.teach.edu.core.entity.MyhomeworkExample;
 import com.teach.edu.core.entityVo.MyhomeworkVo;
+import com.teach.edu.core.mapper.HomeworkMapper;
 import com.teach.edu.core.mapper.MyhomeworkMapper;
 import com.teach.edu.core.mapper.NotesMapper;
 import com.teach.edu.core.service.MyhomeworkService;
+import io.swagger.annotations.Authorization;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,8 @@ import java.util.List;
 public class MyhomeworkServiceImp implements MyhomeworkService {
     @Autowired
    MyhomeworkMapper myhomeworkMapper;
-
+   @Autowired
+    HomeworkMapper homeworkMapper;
 
     @Override
     public Result list() {

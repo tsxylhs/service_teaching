@@ -36,7 +36,7 @@ public class HomeworkServiceImp implements HomeworkService {
     public Result list(PageRequest pageRequest) {
         HomeworkExample ex=new HomeworkExample();
         HomeworkExample.Criteria c= ex.createCriteria();
-        if (Strings.isEmpty(pageRequest.getConditions().get("className"))){
+        if (!Strings.isEmpty(pageRequest.getConditions().get("className"))){
           String className= pageRequest.getConditions().get("className");
           c.andClassNameEqualTo(className);
         }
