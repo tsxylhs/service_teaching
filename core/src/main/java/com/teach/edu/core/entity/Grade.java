@@ -19,13 +19,13 @@ public class Grade {
 
     private String teachName;
 
-    private Integer grades;
+    private Double grades;
 
-    private Integer testScores;
+    private Double testScores;
 
-    private Integer showGrades;
+    private Double showGrades;
 
-    private Integer signin;
+    private Double signin;
 
     private String className;
 
@@ -93,35 +93,35 @@ public class Grade {
         this.teachName = teachName;
     }
 
-    public Integer getGrades() {
+    public Double getGrades() {
         return grades;
     }
 
-    public void setGrades(Integer grades) {
+    public void setGrades(Double grades) {
         this.grades = grades;
     }
 
-    public Integer getTestScores() {
+    public Double getTestScores() {
         return testScores;
     }
 
-    public void setTestScores(Integer testScores) {
+    public void setTestScores(Double testScores) {
         this.testScores = testScores;
     }
 
-    public Integer getShowGrades() {
+    public Double getShowGrades() {
         return showGrades;
     }
 
-    public void setShowGrades(Integer showGrades) {
+    public void setShowGrades(Double showGrades) {
         this.showGrades = showGrades;
     }
 
-    public Integer getSignin() {
+    public Double getSignin() {
         return signin;
     }
 
-    public void setSignin(Integer signin) {
+    public void setSignin(Double signin) {
         this.signin = signin;
     }
 
