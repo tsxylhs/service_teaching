@@ -9,6 +9,7 @@ import com.teach.edu.core.mapper.WxUserMapper;
 import com.teach.edu.core.service.SigninService;
 import com.teach.edu.core.service.WxUserService;
 import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.IdGenerator;
@@ -68,9 +69,17 @@ public class SigninServiceImp implements SigninService {
         List<Grade> grades = gradeMapper.selectByExample(gex);
         if (grades.size() > 0) {
             //加入平时表现成绩
-            grades.get(0).setSignin(grades.get(0).getSignin() + 4);
+            if(!grades.get(0).getSignin().equals(null)) {
+                grades.get(0).setSignin(grades.get(0).getSignin() + 4);
+            }else{
+                grades.get(0).setSignin(4.0);
+            }
             //加入总成绩
-            grades.get(0).setGrades(grades.get(0).getGrades() + 4 * 0.7);
+            if (!grades.get(0).getGrades().equals(null)) {
+                grades.get(0).setGrades(grades.get(0).getGrades() + 4 * 0.7);
+            }else{
+                grades.get(0).setGrades(4.0*0.7);
+            }
             //跟新总成成绩
             gradeMapper.updateByPrimaryKey(grades.get(0));
         } else {

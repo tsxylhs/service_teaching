@@ -75,9 +75,17 @@ public class MyhomeworkServiceImp implements MyhomeworkService {
         List<Grade> grades = gradeMapper.selectByExample(gex);
           if (grades.size()>0){
               //加入平时表现成绩
-            grades.get(0).setShowGrades(grades.get(0).getShowGrades()+4);
+              if (!grades.get(0).getShowGrades().equals(null)) {
+                  grades.get(0).setShowGrades(grades.get(0).getShowGrades() + 4);
+              }else{
+                  grades.get(0).setShowGrades(4.0);
+              }
             //加入总成绩
-            grades.get(0).setGrades(grades.get(0).getGrades()+4*0.7);
+              if (!grades.get(0).getGrades().equals(null)) {
+                  grades.get(0).setGrades(grades.get(0).getGrades() + 4 * 0.7);
+              }else{
+                  grades.get(0).setGrades(4*0.7);
+              }
             //跟新总成成绩
             gradeMapper.updateByPrimaryKey(grades.get(0));
           }else{
