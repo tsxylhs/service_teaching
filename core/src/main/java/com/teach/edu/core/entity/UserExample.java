@@ -332,73 +332,73 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodIsNull() {
-            addCriterion("passwrod is null");
+        public Criteria andPasswordIsNull() {
+            addCriterion("password is null");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodIsNotNull() {
-            addCriterion("passwrod is not null");
+        public Criteria andPasswordIsNotNull() {
+            addCriterion("password is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodEqualTo(String value) {
-            addCriterion("passwrod =", value, "passwrod");
+        public Criteria andPasswordEqualTo(String value) {
+            addCriterion("password =", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodNotEqualTo(String value) {
-            addCriterion("passwrod <>", value, "passwrod");
+        public Criteria andPasswordNotEqualTo(String value) {
+            addCriterion("password <>", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodGreaterThan(String value) {
-            addCriterion("passwrod >", value, "passwrod");
+        public Criteria andPasswordGreaterThan(String value) {
+            addCriterion("password >", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodGreaterThanOrEqualTo(String value) {
-            addCriterion("passwrod >=", value, "passwrod");
+        public Criteria andPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("password >=", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodLessThan(String value) {
-            addCriterion("passwrod <", value, "passwrod");
+        public Criteria andPasswordLessThan(String value) {
+            addCriterion("password <", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodLessThanOrEqualTo(String value) {
-            addCriterion("passwrod <=", value, "passwrod");
+        public Criteria andPasswordLessThanOrEqualTo(String value) {
+            addCriterion("password <=", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodLike(String value) {
-            addCriterion("passwrod like", value, "passwrod");
+        public Criteria andPasswordLike(String value) {
+            addCriterion("password like", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodNotLike(String value) {
-            addCriterion("passwrod not like", value, "passwrod");
+        public Criteria andPasswordNotLike(String value) {
+            addCriterion("password not like", value, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodIn(List<String> values) {
-            addCriterion("passwrod in", values, "passwrod");
+        public Criteria andPasswordIn(List<String> values) {
+            addCriterion("password in", values, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodNotIn(List<String> values) {
-            addCriterion("passwrod not in", values, "passwrod");
+        public Criteria andPasswordNotIn(List<String> values) {
+            addCriterion("password not in", values, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodBetween(String value1, String value2) {
-            addCriterion("passwrod between", value1, value2, "passwrod");
+        public Criteria andPasswordBetween(String value1, String value2) {
+            addCriterion("password between", value1, value2, "password");
             return (Criteria) this;
         }
 
-        public Criteria andPasswrodNotBetween(String value1, String value2) {
-            addCriterion("passwrod not between", value1, value2, "passwrod");
+        public Criteria andPasswordNotBetween(String value1, String value2) {
+            addCriterion("password not between", value1, value2, "password");
             return (Criteria) this;
         }
 
@@ -822,66 +822,6 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andColumn11IsNull() {
-            addCriterion("column_11 is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11IsNotNull() {
-            addCriterion("column_11 is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11EqualTo(Integer value) {
-            addCriterion("column_11 =", value, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11NotEqualTo(Integer value) {
-            addCriterion("column_11 <>", value, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11GreaterThan(Integer value) {
-            addCriterion("column_11 >", value, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11GreaterThanOrEqualTo(Integer value) {
-            addCriterion("column_11 >=", value, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11LessThan(Integer value) {
-            addCriterion("column_11 <", value, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11LessThanOrEqualTo(Integer value) {
-            addCriterion("column_11 <=", value, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11In(List<Integer> values) {
-            addCriterion("column_11 in", values, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11NotIn(List<Integer> values) {
-            addCriterion("column_11 not in", values, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11Between(Integer value1, Integer value2) {
-            addCriterion("column_11 between", value1, value2, "column11");
-            return (Criteria) this;
-        }
-
-        public Criteria andColumn11NotBetween(Integer value1, Integer value2) {
-            addCriterion("column_11 not between", value1, value2, "column11");
-            return (Criteria) this;
-        }
-
         public Criteria andSexIsNull() {
             addCriterion("sex is null");
             return (Criteria) this;
@@ -999,6 +939,126 @@ public class UserExample {
 
         public Criteria andBirthdayNotBetween(Date value1, Date value2) {
             addCriterionForJDBCDate("birthday not between", value1, value2, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtIsNull() {
+            addCriterion("crt is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtIsNotNull() {
+            addCriterion("crt is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtEqualTo(Date value) {
+            addCriterionForJDBCDate("crt =", value, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtNotEqualTo(Date value) {
+            addCriterionForJDBCDate("crt <>", value, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtGreaterThan(Date value) {
+            addCriterionForJDBCDate("crt >", value, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("crt >=", value, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtLessThan(Date value) {
+            addCriterionForJDBCDate("crt <", value, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("crt <=", value, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtIn(List<Date> values) {
+            addCriterionForJDBCDate("crt in", values, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtNotIn(List<Date> values) {
+            addCriterionForJDBCDate("crt not in", values, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("crt between", value1, value2, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCrtNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("crt not between", value1, value2, "crt");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutIsNull() {
+            addCriterion("lut is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutIsNotNull() {
+            addCriterion("lut is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutEqualTo(Date value) {
+            addCriterionForJDBCDate("lut =", value, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutNotEqualTo(Date value) {
+            addCriterionForJDBCDate("lut <>", value, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutGreaterThan(Date value) {
+            addCriterionForJDBCDate("lut >", value, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("lut >=", value, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutLessThan(Date value) {
+            addCriterionForJDBCDate("lut <", value, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("lut <=", value, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutIn(List<Date> values) {
+            addCriterionForJDBCDate("lut in", values, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutNotIn(List<Date> values) {
+            addCriterionForJDBCDate("lut not in", values, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("lut between", value1, value2, "lut");
+            return (Criteria) this;
+        }
+
+        public Criteria andLutNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("lut not between", value1, value2, "lut");
             return (Criteria) this;
         }
     }

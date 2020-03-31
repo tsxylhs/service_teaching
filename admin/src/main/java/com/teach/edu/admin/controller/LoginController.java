@@ -1,10 +1,11 @@
 package com.teach.edu.admin.controller;
 
 import com.teach.edu.admin.model.Info;
+import com.teach.edu.core.entity.OmsUser;
 import com.teach.edu.core.entity.User;
 import com.edu.common.code.model.Result;
 import com.teach.edu.core.entity.WxUser;
-import com.teach.edu.core.service.HomeworkService;
+import com.teach.edu.core.service.OmsUserService;
 import com.teach.edu.core.service.WxUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -12,7 +13,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.jvm.hotspot.debugger.windbg.x86.WindbgX86ThreadFactory;
 
 
 /**
@@ -27,14 +27,14 @@ import sun.jvm.hotspot.debugger.windbg.x86.WindbgX86ThreadFactory;
 public class LoginController {
     @Autowired
     WxUserService wxUserService;
-
+   @Autowired
+   OmsUserService omsUserService;
 
     @PostMapping("/")
     @ApiOperation(value = "用户登录接口")
     @ApiImplicitParam(paramType = "longinin")
-    public Result login(@RequestBody User user) {
-
-        return Result.ok();
+    public Result login(@RequestBody OmsUser user) {
+        return Result.ok(omsUserService.login(user));
     }
 
     @GetMapping("/info")
@@ -51,6 +51,14 @@ public class LoginController {
 
     }
 
+    @PostMapping("/loginout")
+    @ApiOperation(value = "登出信息")
+    @ApiImplicitParam(paramType = "getUserInfo")
+    public Result getloginout() {
+
+        return Result.ok();
+
+    }
     @PutMapping("/")
     @ApiOperation(value = "用户登录信息")
     @ApiImplicitParam(paramType = "login", name = "User", required = true, dataType = "user")

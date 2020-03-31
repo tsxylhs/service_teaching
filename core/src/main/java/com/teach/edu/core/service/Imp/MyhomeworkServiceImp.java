@@ -45,11 +45,15 @@ public class MyhomeworkServiceImp implements MyhomeworkService {
         for (int i = 0; i < myhomeworklists.size(); i++) {
 
             MyhomeworkVo myhomeworkVo = new MyhomeworkVo();
-            myhomeworkVo.myhomeworks = myhomeworklists.get(i);
+
             //查询user
+            myhomeworkVo.setWxUser(wxUserMapper.selectByPrimaryKey(myhomeworklists.get(i).getUserId()));
+            myhomeworkVo.setMyhomeworks(myhomeworklists.get(i));
+            myhomeworkVo.setHomework(homeworkMapper.selectByPrimaryKey(myhomeworklists.get(i).getHomeworkId()));
+            myhomeworkVolist.add(myhomeworkVo);
             //查询作业
         }
-        return Result.ok(myhomeworklists);
+        return Result.ok(myhomeworkVolist);
     }
 
     @Override
@@ -75,13 +79,13 @@ public class MyhomeworkServiceImp implements MyhomeworkService {
         List<Grade> grades = gradeMapper.selectByExample(gex);
           if (grades.size()>0){
               //加入平时表现成绩
-              if (!grades.get(0).getShowGrades().equals(null)) {
+              if (!(grades.get(0).getShowGrades()==null)) {
                   grades.get(0).setShowGrades(grades.get(0).getShowGrades() + 4);
               }else{
                   grades.get(0).setShowGrades(4.0);
               }
             //加入总成绩
-              if (!grades.get(0).getGrades().equals(null)) {
+              if (!(grades.get(0).getGrades()==null)) {
                   grades.get(0).setGrades(grades.get(0).getGrades() + 4 * 0.7);
               }else{
                   grades.get(0).setGrades(4*0.7);

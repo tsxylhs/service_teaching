@@ -9,7 +9,7 @@ public class User {
 
     private String email;
 
-    private String passwrod;
+    private String password;
 
     private String imageUrl;
 
@@ -23,11 +23,13 @@ public class User {
 
     private String qqId;
 
-    private Integer column11;
-
     private Integer sex;
 
     private Date birthday;
+
+    private Date crt;
+
+    private Date lut;
 
     public Long getId() {
         return id;
@@ -53,12 +55,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswrod() {
-        return passwrod;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswrod(String passwrod) {
-        this.passwrod = passwrod;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getImageUrl() {
@@ -109,14 +111,6 @@ public class User {
         this.qqId = qqId;
     }
 
-    public Integer getColumn11() {
-        return column11;
-    }
-
-    public void setColumn11(Integer column11) {
-        this.column11 = column11;
-    }
-
     public Integer getSex() {
         return sex;
     }
@@ -131,5 +125,21 @@ public class User {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public Date getCrt() {
+        return crt;
+    }
+
+    public void setCrt(Date crt) {
+        this.crt = crt;
+    }
+
+    public Date getLut() {
+        return lut;
+    }
+
+    public void setLut(Date lut) {
+        this.lut = lut;
     }
 }
