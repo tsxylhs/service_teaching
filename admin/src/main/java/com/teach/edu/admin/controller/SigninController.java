@@ -55,4 +55,11 @@ public class SigninController {
        signin.setId(new Random().nextLong());
         return   signinService.add(signin);
     }
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除成绩")
+    @ApiImplicitParam(paramType = "query", name = "id", value = "用户id", required = true, dataType = "long")
+    public Result Delete(@PathVariable Long id) {
+        return Result.ok(signinService.delete(id));
+    }
+
 }

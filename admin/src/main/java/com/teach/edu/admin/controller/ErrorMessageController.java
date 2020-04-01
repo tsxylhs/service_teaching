@@ -55,4 +55,11 @@ public class ErrorMessageController {
         errormessageService.add(errormessage);
         return Result.ok();
     }
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除成绩")
+    @ApiImplicitParam(paramType = "query", name = "id", value = "用户id", required = true, dataType = "long")
+    public Result Delete(@PathVariable Long id) {
+        return Result.ok(errormessageService.delete(id));
+    }
+
 }

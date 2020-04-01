@@ -38,7 +38,7 @@ public class GradeController {
         return Result.ok(gradeService.get(id));
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     @ApiOperation(value = "更新学习成绩")
     @ApiImplicitParam(paramType = "update", name = "Grade", required = true, dataType = "grade")
     public Result update(@RequestBody Grade grade) {
@@ -58,4 +58,11 @@ public class GradeController {
         gradeService.add(grade);
         return Result.ok();
     }
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "删除成绩")
+    @ApiImplicitParam(paramType = "query", name = "id", value = "用户id", required = true, dataType = "long")
+    public Result Delete(@PathVariable Long id) {
+        return Result.ok(gradeService.delete(id));
+    }
+
 }
