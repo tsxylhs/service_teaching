@@ -21,8 +21,6 @@ public class Homework {
 
     private String courseName;
 
-    private Object uids;
-
     public Long getId() {
         return id;
     }
@@ -93,13 +91,5 @@ public class Homework {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
-    }
-
-    public Object getUids() {
-        return uids;
-    }
-
-    public void setUids(Object uids) {
-        this.uids = uids;
     }
 }
