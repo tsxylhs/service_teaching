@@ -77,34 +77,40 @@ public class MyhomeworkServiceImp implements MyhomeworkService {
         GradeExample.Criteria c = gex.createCriteria();
         c.andStudentIdEqualTo(Long.parseLong(wxUser.getStudentId())).andClassNameEqualTo(homework.getClassName());
         List<Grade> grades = gradeMapper.selectByExample(gex);
-          if (grades.size()>0){
-              //加入平时表现成绩
-              if (!(grades.get(0).getShowGrades()==null)) {
-                  grades.get(0).setShowGrades(grades.get(0).getShowGrades() + 4);
-              }else{
-                  grades.get(0).setShowGrades(4.0);
-              }
+        if (homework.getUserIds() == null) {
+            homework.setUserIds(Long.toString(myhomework.getUserId()));
+        } else {
+            homework.setUserIds(homework.getUserIds() + (Long.toString(myhomework.getUserId())));
+        }
+        homeworkMapper.updateByPrimaryKey(homework);
+        if (grades.size() > 0) {
+            //加入平时表现成绩
+            if (!(grades.get(0).getShowGrades() == null)) {
+                grades.get(0).setShowGrades(grades.get(0).getShowGrades() + 4);
+            } else {
+                grades.get(0).setShowGrades(4.0);
+            }
             //加入总成绩
-              if (!(grades.get(0).getGrades()==null)) {
-                  grades.get(0).setGrades(grades.get(0).getGrades() + 4 * 0.7);
-              }else{
-                  grades.get(0).setGrades(4*0.7);
-              }
+            if (!(grades.get(0).getGrades() == null)) {
+                grades.get(0).setGrades(grades.get(0).getGrades() + 4 * 0.7);
+            } else {
+                grades.get(0).setGrades(4 * 0.7);
+            }
             //跟新总成成绩
             gradeMapper.updateByPrimaryKey(grades.get(0));
-          }else{
-              Grade grade=new Grade();
-              grade.setId(new Random().nextLong());
-              grade.setCreatedAt(new Date());
-              grade.setUpdatedAt(new Date());
-              grade.setClassName(wxUser.getClassName());
-              grade.setShowGrades(4.0);
-              grade.setCourseGrade(2);
-              grade.setGrades(4*0.7);
-              grade.setCourseName(homework.getCourseName());
-              grade.setTeachName(homework.getTeachName());
-              gradeMapper.insert(grade);
-          }
+        } else {
+            Grade grade = new Grade();
+            grade.setId(new Random().nextLong());
+            grade.setCreatedAt(new Date());
+            grade.setUpdatedAt(new Date());
+            grade.setClassName(wxUser.getClassName());
+            grade.setShowGrades(4.0);
+            grade.setCourseGrade(2);
+            grade.setGrades(4 * 0.7);
+            grade.setCourseName(homework.getCourseName());
+            grade.setTeachName(homework.getTeachName());
+            gradeMapper.insert(grade);
+        }
         return myhomeworkMapper.insert(myhomework);
     }
 
@@ -116,5 +122,18 @@ public class MyhomeworkServiceImp implements MyhomeworkService {
     @Override
     public int delete(long id) {
         return myhomeworkMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Myhomework getHomeworkId(long id) {
+        MyhomeworkExample ex = new MyhomeworkExample();
+        MyhomeworkExample.Criteria c = ex.createCriteria();
+        c.andHomeworkIdEqualTo(id);
+        List<Myhomework> myhomeworks = myhomeworkMapper.selectByExample(ex);
+        if (myhomeworks.size() > 0) {
+            return myhomeworks.get(0);
+        } else {
+            return null;
+        }
     }
 }

@@ -21,4 +21,5 @@ public interface MyhomeworkService {
 
     //删除
     int delete(long id);
+    Myhomework getHomeworkId(long id);
 }

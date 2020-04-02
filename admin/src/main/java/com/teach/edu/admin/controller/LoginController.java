@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,11 @@ public class LoginController {
     @ApiOperation(value = "用户登录接口")
     @ApiImplicitParam(paramType = "longinin")
     public Result login(@RequestBody OmsUser user) {
-        return Result.ok(omsUserService.login(user));
+        if (!Strings.isEmpty(omsUserService.login(user).getName())) {
+            return Result.ok();
+        }else{
+            return Result.notFound();
+        }
     }
 
     @GetMapping("/info")

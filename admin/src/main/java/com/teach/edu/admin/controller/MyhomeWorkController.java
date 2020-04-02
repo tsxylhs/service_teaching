@@ -2,7 +2,10 @@ package com.teach.edu.admin.controller;
 
 import com.edu.common.code.model.Result;
 import com.edu.common.code.page.PageRequest;
+import com.teach.edu.core.entity.Homework;
+import com.teach.edu.core.entity.Materials;
 import com.teach.edu.core.entity.Myhomework;
+import com.teach.edu.core.service.HomeworkService;
 import com.teach.edu.core.service.MyhomeworkService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -11,9 +14,13 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.IdGenerator;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Random;
 import java.util.UUID;
@@ -30,6 +37,8 @@ import java.util.UUID;
 public class MyhomeWorkController {
     @Autowired
     MyhomeworkService myhomeworkService;
+    @Autowired
+    HomeworkService homeworkService;
 
     IdGenerator idGenerator;
 
@@ -65,6 +74,7 @@ public class MyhomeWorkController {
         try {
             if (!file.isEmpty()) {
                 String originalFilename = file.getOriginalFilename();
+                myhomework.setHomeworkDesc(file.getOriginalFilename());
                 String fileNameSuffix = originalFilename.substring(originalFilename.lastIndexOf("."));
 //                统一为小写
                 fileNameSuffix = fileNameSuffix.toLowerCase();
@@ -89,6 +99,36 @@ public class MyhomeWorkController {
          myhomework.setId(new Random().nextLong());
         myhomeworkService.add(myhomework);
         return Result.ok();
+    }
+    @GetMapping("/download/{id}")
+    @ApiOperation(value = "下载文件")
+    public void download(@PathVariable Long id)throws IOException {
+        Myhomework myhomework= myhomeworkService.getHomeworkId(id);
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletResponse response = requestAttributes.getResponse();
+        // 设置信息给客户端不解析
+        String type = new MimetypesFileTypeMap().getContentType(myhomework.getHomeworkDesc());
+        // 设置contenttype，即告诉客户端所发送的数据属于什么类型
+        response.setHeader("Content-type","application/msword");
+        // 设置编码
+        String hehe = new String(myhomework.getHomeworkDesc().getBytes("utf-8"), "iso-8859-1");
+        // 设置扩展头，当Content-Type 的类型为要下载的类型时 , 这个信息头会告诉浏览器这个文件的名字和类型。
+        response.setHeader("Content-Disposition", "attachment;filename=" + hehe);
+
+        // 发送给客户端的数据
+        OutputStream outputStream = response.getOutputStream();
+        byte[] buff = new byte[1024];
+        BufferedInputStream bis = null;
+        // 读取filename
+        bis = new BufferedInputStream(new FileInputStream(new File("./tmp/"+myhomework.getHomeworkDesc())));
+        int i = bis.read(buff);
+        while (i != -1) {
+            outputStream.write(buff, 0, buff.length);
+            outputStream.flush();
+            i = bis.read(buff);
+        }
+
+
     }
 
 
