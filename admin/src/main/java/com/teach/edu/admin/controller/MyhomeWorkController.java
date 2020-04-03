@@ -70,11 +70,11 @@ public class MyhomeWorkController {
         myhomework.setUserId(Long.parseLong(request.getParameter("userId")));
         myhomework.setHomeworkId(Long.parseLong(request.getParameter("homeworkId")));
         myhomework.setUserName(request.getParameter("userName"));
+        myhomework.setHomeworkDesc(request.getParameter("name"));
         myhomework.setClassName(request.getParameter("className"));
         try {
             if (!file.isEmpty()) {
                 String originalFilename = file.getOriginalFilename();
-                myhomework.setHomeworkDesc(file.getOriginalFilename());
                 String fileNameSuffix = originalFilename.substring(originalFilename.lastIndexOf("."));
 //                统一为小写
                 fileNameSuffix = fileNameSuffix.toLowerCase();
@@ -107,6 +107,7 @@ public class MyhomeWorkController {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse response = requestAttributes.getResponse();
         // 设置信息给客户端不解析
+        log.info(myhomework.getHomeworkDesc());
         String type = new MimetypesFileTypeMap().getContentType(myhomework.getHomeworkDesc());
         // 设置contenttype，即告诉客户端所发送的数据属于什么类型
         response.setHeader("Content-type","application/msword");
